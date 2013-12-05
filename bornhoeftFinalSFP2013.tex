@@ -51,14 +51,14 @@ Deep Space Network (DSN) equipment failures can cripple NASA’s telecommunicati
 \maketitle
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
 The Deep Space Network (DSN) has been in operation since 1959, and most of its antennas were built in the 1960s and 1970s. Although five new antennas were added in the 1990s and one in 2003, the DSN is aging and, combined with the fact that the DSN is supporting more missions at further distances from the Earth than it was originally designed to handle, equipment failures, while still remaining relatively infrequent, have become more incessant and detrimental in recent years. \cite{bagri2007} \cite{wackley2011} It is therefore more necessary than ever for methodologies to be in place which can handle such failures when they occur.
 
 In this investigation, we develop methods to analyze historical DSN data to determine the probability of failure for a given process, the likelihood that telemetry data is lost, and a reasonable estimation for the severity of such failures if they do indeed occur. We then go on to present new methods, using the Open Telecom Platform (OTP) Design Principles developed as part of the Erlang programming language, for implementing more robust messaging software solutions within the DSN.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Risk Analysis}
 
 %Over the past few weeks I have been working on analyzing events on the DSN to determine the likelihood, severity, and duration %of various errors and failures, and, more recently, I have also been attempting to devise methods for dealing with these failures without allowing for a %possibility of disruption and chaos. The overall goal of this project is to help to determine whether or not, and if so to what extent, the DSN can be %further automated. If automating the DSN is not likely to cause major and long lasting failures it is a feasible goal.
@@ -87,7 +87,7 @@ The calculations for the probability and mean value have not been included as th
 From an inspection of the frequency distribution (Figure~\ref{fig:freqdist}) of the data with respect to telemetry lost it was immediately evident that if the DSN data were to fit a normal distribution it must have an enormous negative skew.
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/figures2}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/figures2}
 \caption{This is a plot of the presumably representative subset of DSN event data  provided to me, excluding events where no telemetry service was lost (or at least much less than one minute was lost) so that the shape of the curve that is seemingly traced out by the data plot can be seen with the naked eye.\label{fig:freqdist}}
 \end{figure}
 
@@ -100,14 +100,14 @@ Even though we were not able to fit the DSN data to a continuous distribution, w
 
 Originally, we wrote functions to calculate the number of events, number of failures, probability of failure, probability of data loss, average telemetry loss, and ninety-fifth percentile telemetry loss for each given assembly. After realizing that it would be advantageous to devise these methods in a more genral form, we  modified these functions to receive assemblies, antennas, DSN complexes, or missions, and calculate the same statistics. For the purposes of making graphical representations of the query results, we realized that it would be useful to calculate the fifth percentile of telemetry loss values as well as the ninety-fifth, so that we could use error bars to show the range that ninety percent of the data fell into, which helped to give a sense of how uniform the losses due to failures were for a particular component. As a result of this realization, we generalized my ninety-fifth percentile function to return any given percentile’s value (Appendix A). The concepts behind relational databases and the tools afforded SQL language made the implementation of such methods relatively simple. As a result, the original goals of our project were accomplished in a considerably shorter amount of time than was expected.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 
 \section{Robust and Cost Effective Software Solutions}
 
 Upon the completion of the original project goals we explored methods for making the DSN software more robust to failures given that software is a large contributor to service interuptions. We turned to the language of Erlang since we felt that it might have significant advantages, at least in this context due to its OTP Design Principles, over other solutions given that Erlang was designed to respond to the requirements of telecommunication system applications. \cite{armstrong2003}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/diagram}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/diagram}
 \caption{This is a diagram of our particular conceptual implementation of the OTP Design Principles to work with the DSN. \label{fig:diagram}}
 \end{figure}
 
@@ -123,10 +123,10 @@ During the course of this project failures of the DSN were investigated. Using a
 
 The project then evolved into an exploration of the applicability of the Erlang language OTP framework to the design of more robust DSN software solutions. Time did not allowed for a direct comparison between Erlang and alternative architectures written in Java or C/C++ which are currently the languages primarily used in the DSN.  However, the authors of this paper are fairly confident that Erlang provides a viable option for the design and implementation of selective applications within the DSN software infrastructure.  
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Place all of the references you used to write this paper in a file
-% with the same name as following the \bibliography command
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Place all of the references you used to write this paper in a file
+%% with the same name as following the \bibliography command
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliography{sample-paper}
 
@@ -140,75 +140,75 @@ The project then evolved into an exploration of the applicability of the Erlang 
 \end{thebibliography}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{acknowledgments} 
 This work was supported by the California Institute of Technology and the National Aeronautics and Space Administration. I.B. thanks Harihar Subramanyam, Cecilia Sanders, and Michael Younkin for their technical assistance, as well as David Mohr for his guidance and unreasonable kindness.
 \end{acknowledgments}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \appendix
 
-\section{Query Results for a Smple Data Set}
+\section{Query Results for a Sample Data Set}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/probOfFailureAssembly}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/probOfFailureAssembly}
 \caption{This graph displays the probability of failure for several DSN assemblies.\label{fig:fig2}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/probOfLossAssembly}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/probOfLossAssembly}
 \caption{This graph displays the probability of data loss per failure for several DSN assemblies.\label{fig:fig3}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/avgFailureAssembly}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/avgFailureAssembly}
 \caption{This graph displays the average data loss per failure resulting in data loss for several DSN assemblies in minutes. The error bars denote the $5^{th}$ and $95^{th}$ percentile values. \label{fig:fig4}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/probOfFailureMission}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/probOfFailureMission}
 \caption{This graph displays the probability of failure by DSN mission.\label{fig:fig5}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/probOfLossMission}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/probOfLossMission}
 \caption{This graph displays the probability of data loss per failure by DSN mission.\label{fig:fig6}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/avgFailureMission}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/avgFailureMission}
 \caption{This graph displays the average data loss per failure resulting in data loss by DSN mission in minutes. The error bars denote the $5^{th}$ and $95^{th}$ percentile values. \label{fig:fig7}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/probOfFailureDscc}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/probOfFailureDscc}
 \caption{This graph displays the probability of failure by DSCC.\label{fig:fig8}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/probOfLossDscc}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/probOfLossDscc}
 \caption{This graph displays the probability of data loss per failure by DSCC. \label{fig:fig9}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/avgFailureDscc}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/avgFailureDscc}
 \caption{This graph displays the average data loss per failure resulting in data loss by DSCC in minutes. The error bars denote the $5^{th}$ and $95^{th}$ percentile values. \label{fig:fig10}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/probOfFailureAntenna}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/probOfFailureAntenna}
 \caption{This graph displays the probability of failure by DSN antenna.\label{fig:fig11}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/probOfLossAntenna}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/probOfLossAntenna}
 \caption{This graph displays the probability of data loss per failure by DSN antenna. \label{fig:fig12}}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/bonhoeft2013/bonhoeft2013/avgFailureAntenna}
+\includegraphics[width=8cm]{C:/Users/bornhi-t410/Documents/GitHub/piperResearch/avgFailureAntenna}
 \caption{This graph displays the average data loss per failure resulting in data loss by DSN antenna in minutes. The error bars denote the $5^{th}$ and $95^{th}$ percentile values. \label{fig:fig13}}
 \end{figure}
 
